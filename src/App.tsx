@@ -2,6 +2,7 @@ import Card from './card';
 import{useState} from 'react';
 import CardDeck from './lib/CardDeck';
 import GameCard from './lib/GameCard';
+import PokerHand from './lib/PokerHand';
 
 const App = () => {
     const [cards, setCards] = useState<GameCard[]>([]);
@@ -12,6 +13,13 @@ const App = () => {
         setCards(newCards);
     };
 
+    let outcome = '';
+    if (cards.length > 0) {
+        const hand = new PokerHand(cards);
+        outcome = hand.getOutcome();
+    }
+
+
     return (
         <>
             <div className="playingCards faceImages">
@@ -21,6 +29,9 @@ const App = () => {
             </div>
             <div>
                 <button onClick={deal}>Deal</button>
+                <p>
+                    <strong>Outcome:</strong>{outcome}
+                </p>
             </div>
         </>
     );
