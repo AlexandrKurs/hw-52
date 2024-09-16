@@ -13,7 +13,7 @@ class CardDeck {
     }
     getCard() {
        const randomIndex = Math.floor(Math.random() * this.cards.length);
-       const [result] = this.cards.slice(randomIndex, 1);
+       const [result] = this.cards.splice(randomIndex, 1);
 
        return result;
     }
